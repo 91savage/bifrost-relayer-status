@@ -1,0 +1,10 @@
+version: '2.12'
+
+services:
+  relayer-bot:
+    container_name: bifrost-relayer-bot
+    image: bifrost-relayer-status
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env

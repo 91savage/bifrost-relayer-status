@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "relayerbot"
+version = "0.0.1"
+description = ""
+authors = ["sehun"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+python-telegram-bot = "^20.2"
+web3 = "^6.5.0"
+setuptools = "^68.0.0"
+python-dotenv = "^1.0.0"
+substrate-interface = "^1.7.3"
+schedule = "^1.2.0"
+
+
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
