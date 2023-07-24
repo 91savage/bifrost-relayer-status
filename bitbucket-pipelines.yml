@@ -11,7 +11,7 @@ pipelines:
       - step:
           name: 'Build'
           script:
-            - cd bifrost-relayer-bot
+            - cd /app/bifrost-relayer-bot
             - docker build -t cpsehun/bifrost-relayer-status:1.0 .
       - step:
           name: 'Configure .env file'
