@@ -3,7 +3,7 @@
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
 
-image: cpsehun/bifrost-relayer-status:1.0
+image: cpsehun/bifrost-relayer-bot:latest
 
 pipelines:
   default:
@@ -16,7 +16,7 @@ pipelines:
             - cat /etc/issue
             - free -m
             - df -h
-            - cat /etc/cpuinfo | grep processor
+            - lscpu
       - step:
           name: 'Configure .env file'
           script:
