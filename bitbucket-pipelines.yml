@@ -14,6 +14,9 @@ pipelines:
             - cd /app
             - ls
             - cat /etc/issue
+            - free -m
+            - df -h
+            - cat /etc/cpuinfo | grep processor
       - step:
           name: 'Configure .env file'
           script:
