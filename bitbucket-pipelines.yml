@@ -16,6 +16,7 @@ pipelines:
       - step:
           name: 'Configure .env file'
           script:
+            - cd bifrost-relayer-bot
             - cp env-example .env
             - vim .env
             - echo "TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}" >> .env
