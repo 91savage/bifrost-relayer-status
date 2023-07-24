@@ -1,0 +1,30 @@
+# This is an example Starter pipeline configuration
+# Use a skeleton to build, test and deploy using manual and parallel steps
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+
+image: cpsehun/bifrost-relayer-status:1.0
+
+pipelines:
+  default:
+    - parallel:
+      - step:
+          name: 'Build'
+          script:
+            - cd bifrost-relayer-bot
+            - docker build -t bifrost-relayer-status .
+      - step:
+          name: 'Configure .env file'
+          script:
+            - cp env-example .env
+            - vim .env
+            - echo "TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}" >> .env
+            - echo "chat_id=${chat_id}" >> .env
+            - echo "group_id=${group_id}" >> .env
+
+      - step:
+          name: 'docker-compose up'
+          script:
+            - docker-compose up -d
+
+
