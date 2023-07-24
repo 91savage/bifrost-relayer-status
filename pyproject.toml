@@ -12,7 +12,6 @@ web3 = "^6.5.0"
 setuptools = "^68.0.0"
 python-dotenv = "^1.0.0"
 substrate-interface = "^1.7.3"
-schedule = "^1.2.0"
 
 
 
