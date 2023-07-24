@@ -24,7 +24,8 @@
     - cd bifrost-relayer-bot
     - docker build -t bifrost-relayer-status .
 
-4. init & Run 
+4. init & Run
+    - cp env-example .env
     - vim .env
     -   TELEGRAM_BOT_TOKEN =
         chat_id = 
