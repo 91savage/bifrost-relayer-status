@@ -13,6 +13,7 @@ pipelines:
           script:
             - cd /app
             - ls
+            - cat /etc/issue
       - step:
           name: 'Configure .env file'
           script:
