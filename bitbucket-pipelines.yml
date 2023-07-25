@@ -18,9 +18,8 @@ pipelines:
           script:
             - docker-compose up -d
             - docker ps -a
-
           services:
-            - docker-compose
+            - customdocker
 
       - step:
           name: 'docker-compose up'
@@ -32,3 +31,7 @@ pipelines:
             - echo "group_id=${group_id}" >> .env
 
 
+definitions:
+    services:
+        customdocker:
+            image: docker/compose:1.28.5
