@@ -10,6 +10,7 @@ pipelines:
           name: 'Build and Push Docker Image'
           script:
             - docker build -t cpsehun/bifrost-relayer-bot:latest .
+            - docker push cpsehun/bifrost-relayer-bot:tagname
           services:
             - docker
 
