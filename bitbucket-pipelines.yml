@@ -19,7 +19,7 @@ pipelines:
           script:
             - ls
             - cp env-example.env .env
-            - vim .env
+            - vi .env
             - echo "TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}" >> .env
             - echo "chat_id=${chat_id}" >> .env
             - echo "group_id=${group_id}" >> .env
