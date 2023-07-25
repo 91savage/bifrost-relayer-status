@@ -9,11 +9,6 @@ pipelines:
       - step:
           name: 'Build and Push Docker Image'
           script:
-            - touch .env
-            - echo "TELEGRAM_BOT_TOKEN= $TELEGRAM_BOT_TOKEN" >> .env
-            - echo "chat_id= $chat_id" >> .env
-            - echo "group_id= $group_id" >> .env
-            - cat .env
             - docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
             - docker build -t $DOCKER_HUB_USERNAME/bifrost-relayer-bot:latest .
             - docker push $DOCKER_HUB_USERNAME/bifrost-relayer-bot:latest
@@ -31,6 +26,11 @@ pipelines:
       - step:
           name: 'Deploy'
           script:
+            - touch .env
+            - echo "TELEGRAM_BOT_TOKEN= $TELEGRAM_BOT_TOKEN" >> .env
+            - echo "chat_id= $chat_id" >> .env
+            - echo "group_id= $group_id" >> .env
+            - cat .env
             - docker pull cpsehun/bifrost-relayer-bot:latest
             - docker image ls
             - sudo curl -SL https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
