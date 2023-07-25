@@ -9,10 +9,10 @@ pipelines:
       - step:
           name: 'Build and Push Docker Image'
           script:
-            - cat .env
             - echo "TELEGRAM_BOT_TOKEN= $TELEGRAM_BOT_TOKEN" >> .env
             - echo "chat_id= $chat_id" >> .env
             - echo "group_id= $group_id" >> .env
+            - cat .env
             - docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
             - docker build -t $DOCKER_HUB_USERNAME/bifrost-relayer-bot:latest .
             - docker push $DOCKER_HUB_USERNAME/bifrost-relayer-bot:latest
