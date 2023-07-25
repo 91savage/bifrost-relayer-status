@@ -9,8 +9,7 @@ pipelines:
       - step:
           name: 'Build and Push Docker Image'
           script:
-            - docker version
-            - docker ps -a
+            - docker build -t bifrost-relayer-bot .
           services:
             - docker
 
