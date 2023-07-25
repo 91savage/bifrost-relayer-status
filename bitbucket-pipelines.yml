@@ -9,6 +9,11 @@ pipelines:
       - step:
           name: 'Build and Push Docker Image'
           script:
+            - cp env-example.env .env
+            - echo "TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}" >> .env
+            - echo "chat_id=${chat_id}" >> .env
+            - echo "group_id=${group_id}" >> .env
+            - cat .env
             - docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
             - docker build -t $DOCKER_HUB_USERNAME/bifrost-relayer-bot:latest .
             - docker push $DOCKER_HUB_USERNAME/bifrost-relayer-bot:latest
@@ -21,18 +26,18 @@ pipelines:
       #       - ls
       #       - cp env-example.env .env
       #       - vi .env
-      #       - echo "TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}" >> .env
-      #       - echo "chat_id=${chat_id}" >> .env
-      #       - echo "group_id=${group_id}" >> .env
+            
 
       - step:
-          name: 'docker-compose up'
+          name: 'Deploy'
           script:
-            - ls
-            - *docker-compose-install
+            - docker pull cpsehun/bifrost-relayer-bot:latest
+            - docker image ls
+            - sudo curl -SL https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+            - sudo chmod +x /usr/local/bin/docker-compose
             - export DOCKER_BUILDKIT=0
             - docker-compose --version
-            - docker-compose -v
+            - docker-compose up -d
             # - docker-compose up -d
             # - docker ps -a
             # - docker logs -f
@@ -40,10 +45,7 @@ pipelines:
             - docker
           
 
-definitions:
-  docker-compose-install: &docker-compose-install
-    - sudo curl -SL https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
-    - sudo chmod +x /usr/local/bin/docker-compose
+    
           
 
 
