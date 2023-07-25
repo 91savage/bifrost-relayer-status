@@ -3,16 +3,14 @@
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
 
-image: cpsehun/bifrost-relayer-bot:latest
-
 pipelines:
   default:
     - parallel:
       - step:
           name: 'Build'
           script:
-            - cd /app
-            - docker build -t bifrost-relayer-bot .
+            - docker ps -a
+            - docker --help
 
       - step:
           name: 'Configure .env file'
