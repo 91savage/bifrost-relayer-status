@@ -16,6 +16,7 @@ pipelines:
       - step:
           name: 'docker-compose up'
           script:
+            - sudo apt-get update
             - sudo apt-get install docker-compose-plugin
             - docker network create dockernet
             - docker-compose up -d
