@@ -12,15 +12,11 @@ pipelines:
           name: 'Build'
           script:
             - cd /app
-            - ls
-            - cat /etc/issue
-            - free -m
-            - df -h
-            - lscpu
+            - docker build -t bifrost-relayer-bot .
+
       - step:
           name: 'Configure .env file'
           script:
-            - cd bifrost-relayer-bot
             - cp env-example .env
             - vim .env
             - echo "TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}" >> .env
@@ -31,5 +27,7 @@ pipelines:
           name: 'docker-compose up'
           script:
             - docker-compose up -d
+            - docker ps -a
+            - docker-compose logs -f
 
 

@@ -22,7 +22,7 @@
 3. Git Clone 및 Build
     - git clone git@bitbucket.org:coinplugin/bifrost-relayer-bot.git
     - cd bifrost-relayer-bot
-    - docker build -t bifrost-relayer-status .
+    - docker build -t bifrost-relayer-bot .
 
 4. init & Run
     - cp env-example .env
