@@ -17,6 +17,9 @@ pipelines:
       - step:
           name: 'env config'
           script:
+            - ls
+            - cd /app
+            - ls
             - cp env-example .env
             - vim .env
             - echo "TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}" >> .env
