@@ -9,7 +9,7 @@ pipelines:
       - step:
           name: 'Build and Push Docker Image'
           script:
-            - docker build -t cpsehun/bifrost-relayer-bot:latest
+            - docker build -t cpsehun/bifrost-relayer-bot:latest .
           services:
             - docker
 
