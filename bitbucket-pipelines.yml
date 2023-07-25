@@ -16,13 +16,14 @@ pipelines:
       - step:
           name: 'docker-compose up'
           script:
-            - sudo apt-get update
-            - sudo apt-get install docker-compose-plugin
-            - docker network create dockernet
+            - sudo curl -SL https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+            - sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+            - docker --version
+            - docker -v
             - docker-compose up -d
             - docker ps -a
-          services:
-            - docker
+          # services:
+          #   - docker
           
 # definitions:
 #     services:
