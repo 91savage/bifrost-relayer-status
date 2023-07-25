@@ -15,23 +15,24 @@ pipelines:
 
       - step:
           name: 'docker-compose up'
+          services:
+            - customdocker
           script:
             - docker-compose up -d
             - docker ps -a
-          services:
-            - customdocker
-
-      - step:
-          name: 'docker-compose up'
-          script:
-            - cp env-example .env
-            - vim .env
-            - echo "TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}" >> .env
-            - echo "chat_id=${chat_id}" >> .env
-            - echo "group_id=${group_id}" >> .env
-
-
+          
 definitions:
     services:
         customdocker:
             image: docker/compose:1.28.5
+
+      # - step:
+      #     name: 'docker-compose up'
+      #     script:
+      #       - cp env-example .env
+      #       - vim .env
+      #       - echo "TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}" >> .env
+      #       - echo "chat_id=${chat_id}" >> .env
+      #       - echo "group_id=${group_id}" >> .env
+
+
