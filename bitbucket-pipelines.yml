@@ -9,8 +9,9 @@ pipelines:
       - step:
           name: 'Build and Push Docker Image'
           script:
-            - docker build -t cpsehun/bifrost-relayer-bot:latest .
-            - docker push cpsehun/bifrost-relayer-bot:latest
+            - docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
+            - docker build -t $DOCKER_HUB_USERNAME/bifrost-relayer-bot:latest .
+            - docker push $DOCKER_HUB_USERNAME/bifrost-relayer-bot:latest
           services:
             - docker
 
