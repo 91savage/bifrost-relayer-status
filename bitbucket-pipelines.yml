@@ -9,20 +9,19 @@ pipelines:
       - step:
           name: 'Build and Push Docker Image'
           script:
-
-            - docker build -t bifrost-relayer-bot .
+            - docker build -t cpsehun/bifrost-relayer-bot:latest
           services:
             - docker
 
-      - step:
-          name: 'env config'
-          script:
-            - ls
-            - cp env-example.env .env
-            - vi .env
-            - echo "TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}" >> .env
-            - echo "chat_id=${chat_id}" >> .env
-            - echo "group_id=${group_id}" >> .env
+      # - step:
+      #     name: 'env config'
+      #     script:
+      #       - ls
+      #       - cp env-example.env .env
+      #       - vi .env
+      #       - echo "TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}" >> .env
+      #       - echo "chat_id=${chat_id}" >> .env
+      #       - echo "group_id=${group_id}" >> .env
 
       - step:
           name: 'docker-compose up'
@@ -33,9 +32,9 @@ pipelines:
             - export DOCKER_BUILDKIT=0
             - docker-compose --version
             - docker-compose -v
-            - docker-compose up -d
-            - docker ps -a
-            - docker logs -f
+            # - docker-compose up -d
+            # - docker ps -a
+            # - docker logs -f
           services:
             - docker
           
