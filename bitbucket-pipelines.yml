@@ -9,7 +9,7 @@ pipelines:
       - step:
           name: 'Build and Push Docker Image'
           script:
-            - export DOCKER_BUILDKIT=0
+
             - docker build -t bifrost-relayer-bot .
           services:
             - docker
@@ -19,6 +19,7 @@ pipelines:
           script:
             - sudo curl -SL https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
             - sudo chmod +x /usr/local/bin/docker-compose
+            - export DOCKER_BUILDKIT=0
             - docker-compose --version
             - docker-compose -v
             - docker-compose up -d
