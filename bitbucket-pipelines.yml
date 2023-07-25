@@ -15,16 +15,18 @@ pipelines:
 
       - step:
           name: 'docker-compose up'
-          services:
-            - customdocker
           script:
+            - sudo apt -y install docker-compose
+            - docker network create dockernet
             - docker-compose up -d
             - docker ps -a
+          services:
+            - docker
           
-definitions:
-    services:
-        customdocker:
-            image: docker/compose:1.28.5
+# definitions:
+#     services:
+#         customdocker:
+#             image: docker/compose:1.28.5
 
       # - step:
       #     name: 'docker-compose up'
