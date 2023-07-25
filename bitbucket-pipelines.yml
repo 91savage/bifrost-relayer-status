@@ -10,25 +10,25 @@ pipelines:
           name: 'Build and Push Docker Image'
           script:
             - docker build -t bifrost-relayer-bot .
-            - docker-compose up -d
-            - docker ps -a
           services:
             - docker
-
-      - step:
-          name: 'Configure .env file'
-          script:
-            - cp env-example .env
-            - vim .env
-            - echo "TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}" >> .env
-            - echo "chat_id=${chat_id}" >> .env
-            - echo "group_id=${group_id}" >> .env
 
       - step:
           name: 'docker-compose up'
           script:
             - docker-compose up -d
             - docker ps -a
-            - docker-compose logs -f
+
+          services:
+            - docker-compose
+
+      - step:
+          name: 'docker-compose up'
+          script:
+            - cp env-example .env
+            - vim .env
+            - echo "TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}" >> .env
+            - echo "chat_id=${chat_id}" >> .env
+            - echo "group_id=${group_id}" >> .env
 
 
