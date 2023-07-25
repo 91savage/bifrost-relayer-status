@@ -7,10 +7,12 @@ pipelines:
   default:
     - parallel:
       - step:
-          name: 'Build'
+          name: 'Build and Push Docker Image'
           script:
+            - docker version
             - docker ps -a
-            - docker --help
+          services:
+            - docker
 
       - step:
           name: 'Configure .env file'
