@@ -29,8 +29,7 @@ pipelines:
           name: 'docker-compose up'
           script:
             - ls
-            - sudo curl -SL https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
-            - sudo chmod +x /usr/local/bin/docker-compose
+            - *docker-compose-install
             - export DOCKER_BUILDKIT=0
             - docker-compose --version
             - docker-compose -v
@@ -39,6 +38,12 @@ pipelines:
             # - docker logs -f
           services:
             - docker
+          
+
+definitions:
+  docker-compose-install: &docker-compose-install
+    - sudo curl -SL https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+    - sudo chmod +x /usr/local/bin/docker-compose
           
 
 
