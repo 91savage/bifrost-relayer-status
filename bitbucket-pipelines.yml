@@ -20,9 +20,10 @@ pipelines:
           name: 'Deploy'
           script:
             - touch .env
-            - echo "TELEGRAM_BOT_TOKEN= $TELEGRAM_BOT_TOKEN" ; echo "chat_id= $chat_id" ; echo "group_id= $group_id" >> .env
-            # - echo "chat_id= $chat_id" >> .env
-            # - echo "group_id= $group_id" >> .env
+            -  |
+              echo "TELEGRAM_BOT_TOKEN= $TELEGRAM_BOT_TOKEN" ; echo "chat_id= $chat_id" ; echo "group_id= $group_id" >> .env
+              echo "chat_id= $chat_id" >> .env
+              echo "group_id= $group_id" >> .env
             - cat .env
             - docker pull cpsehun/bifrost-relayer-bot:latest
             - docker image ls
